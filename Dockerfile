@@ -4,8 +4,6 @@ ARG FRONTEND_URL ACTIVE_STORAGE_SERVICE DATABASE_URL DEFAULT_LOCALE INSTALLATION
 
 RUN apk add --no-cache multirun
 
-RUN chmod +x docker/entrypoints/rails.sh
-
 RUN sleep 3 && bundle exec rails db:chatwoot_prepare && bundle exec rails db:migrate
 
 ENTRYPOINT ["multirun"]
