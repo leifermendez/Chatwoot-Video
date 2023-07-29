@@ -8,4 +8,4 @@ RUN sleep 3 && bundle exec rails db:chatwoot_prepare && bundle exec rails db:mig
 
 ENTRYPOINT ["multirun"]
 
-CMD ["bundle exec sidekiq -C config/sidekiq.yml", "bundle exec bundle exec rails s -b 0.0.0.0 -p $PORT"]
+CMD ["bundle exec sidekiq -C config/sidekiq.yml", "bundle exec rails s -b 0.0.0.0 -p $PORT"]
