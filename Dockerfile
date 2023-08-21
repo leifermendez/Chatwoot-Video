@@ -1,10 +1,10 @@
 FROM chatwoot/chatwoot:v2.18.0-ce
 
-ARG FRONTEND_URL ACTIVE_STORAGE_SERVICE DATABASE_URL DEFAULT_LOCALE INSTALLATION_ENV NODE_ENV RAILS_ENV REDIS_URL SECRET_KEY_BASE
+ARG FRONTEND_URL ACTIVE_STORAGE_SERVICE DATABASE_URL PGHOST PGPORT DEFAULT_LOCALE INSTALLATION_ENV NODE_ENV RAILS_ENV REDIS_URL SECRET_KEY_BASE
 
 RUN apk add --no-cache multirun postgresql-client
 
-RUN pg_isready -d $DATABASE_URL && bundle exec rails db:chatwoot_prepare && bundle exec rails db:migrate
+RUN pg_isready -h $PGHOST -p $PGPORT && bundle exec rails db:chatwoot_prepare && bundle exec rails db:migrate
 
 ENTRYPOINT ["multirun"]
 
